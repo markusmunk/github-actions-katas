@@ -57,7 +57,7 @@ jobs:
       - run: bash ci/build-docker.sh && bash ci/push-docker.sh
   Component-test:
     
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Docker-image
     steps:
       - name: download-artifact
