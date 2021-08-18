@@ -24,7 +24,7 @@ jobs:
           name: compiled-app
           path: .
       - name: test
-        run: ci/unit-test-app.sh
+        run: chmod +x ci/build-app.sh
   Build:
     needs: [Clone-down]
     runs-on: ubuntu-latest
