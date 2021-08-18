@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
+      - uses: actions/checkout@v2
       - name: build-app
-        uses: actions/checkout@v2
         run: bash ci/build-app.sh
       - name: upload artifact
         uses: actions/upload-artifact@v2
