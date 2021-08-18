@@ -55,5 +55,11 @@ jobs:
       - name: set-git-commit as environment
         run: export GIT_COMMIT="GA-$GITHUB_SHA"
       - run: bash ci/build-docker.sh && bash ci/push-docker.sh
+  Component-test:
+    runs-on: ubuntu-latest
+    needs: Docker-image
+    container: markusmunk/micronaut-app:latest
+    steps:
+      run: bash ci/component-test.sh
         
 
