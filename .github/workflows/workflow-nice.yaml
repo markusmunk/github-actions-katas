@@ -60,6 +60,6 @@ jobs:
     needs: Docker-image
     container: markusmunk/micronaut-app:latest
     steps:
-      run: bash ci/component-test.sh
+      - run: bash ci/component-test.sh
         
 
