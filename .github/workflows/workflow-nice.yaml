@@ -1,3 +1,6 @@
+env:
+  docker_username: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_PASSWORD }}
 name: Java_CI
 on: push
 jobs: 
@@ -40,3 +43,18 @@ jobs:
         with:
           name: code
           path: .
+  Docker-image:
+    needs: [Build, Test]
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    steps:
+      - name: download-artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+      - name: set-git-commit as environment
+        run: export GIT_COMMIT="GA-$GITHUB_SHA"
+      - run: bash ci/build-docker.sh && bash ci/push-docker.sh
+        
+
